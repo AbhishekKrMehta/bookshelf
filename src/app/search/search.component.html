@@ -1,0 +1,40 @@
+<div class="search">
+  <mat-toolbar color="primary">
+    <span>Search for a book</span>
+    <span class="spacer"></span>
+    <button mat-mini-fab color="primary" style="float: right;" (click)="closeDialog()">X</button>
+  </mat-toolbar>
+  <hr>
+  <!-- <mat-form-field>
+    <mat-select placeholder="Search using: " [(ngModel)]="selected">
+      <mat-option *ngFor="let sc of searchCriteria" [value]="sc.value">
+        {{ sc.viewValue }}
+      </mat-option>
+    </mat-select>
+    
+    
+    <input matInput type="text" placeholder="Please enter {{selected}}" [(ngModel)]="userInput" *ngIf="selected" />
+    <button mat-button *ngIf="userInput" matSuffix mat-icon-button aria-label="Clear" (click)="userInput=''">
+      <mat-icon>close</mat-icon>
+    </button>
+  </mat-form-field> -->
+  
+  <form class="form-container" [formGroup]="myForm" (ngSubmit)="submit(myForm.value)" novalidate>
+    <mat-form-field>
+      <mat-select placeholder="Please select search criteria" formControlName="selectedCriteria" #scRef>
+        <mat-option *ngFor="let sc of searchCriteria" [value]="sc">
+          {{ sc.viewValue }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+    
+    <mat-form-field *ngIf="scRef.value">
+      <input matInput type="text" placeholder="Please enter {{myForm.value.selectedCriteria.viewValue}}" 
+      formControlName="userInput">
+    </mat-form-field>
+    <br>
+    <button style="width: 100px;" mat-raised-button color="primary" 
+    [disabled]="!myForm.valid" [mat-dialog-close]="myForm.value">Search</button>
+  </form>
+  
+</div>

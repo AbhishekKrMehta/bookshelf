@@ -1,0 +1,11 @@
+.container-fluid{
+    margin-top: 90px;
+}
+
+#bookCover{
+    height: 420px;
+}
+
+dd a{
+    color: black;
+}

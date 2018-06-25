@@ -1,0 +1,88 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary fixed-top">
+  <a class="navbar-brand" href="https://abhishekkrmehta.github.io/bookshelf/">Bookshelf</a>  
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+    <div class="navbar-nav">
+      <a class="nav-item nav-link" href="#" routerLink="/books">Home</a>
+    </div>
+  </div>
+</nav>
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-3" style="text-align: center">
+      <img src="{{bookDetails?.volumeInfo?.imageLinks?.thumbnail}}" alt="Book cover not available" id="bookCover" class="img-thumbnail">
+    </div>
+    <div class="col-6">
+      <blockquote class="blockquote">
+        <h2><p class="mb-0">{{bookDetails?.volumeInfo?.title}}</p></h2>
+        <footer class="blockquote-footer">{{bookDetails?.volumeInfo?.authors}}</footer>
+      </blockquote>
+      <hr class="my-4">
+      
+      <dl class="row">
+        <dt class="col-sm-3">Description</dt>
+        <dd class="col-sm-9">{{bookDetails?.volumeInfo?.description}}</dd>
+        
+        <dt class="col-sm-3">Publisher</dt>
+        <dd class="col-sm-9">{{bookDetails?.volumeInfo?.publisher}}</dd>
+        
+        <dt class="col-sm-3">Published date</dt>
+        <dd class="col-sm-9">{{bookDetails?.volumeInfo?.publishedDate}}</dd>
+        
+        <dt class="col-sm-3">Language</dt>
+        <dd class="col-sm-9">{{bookDetails?.volumeInfo?.language}}</dd>
+        
+        <dt class="col-sm-3">ISBN</dt>
+        <dd class="col-sm-9">{{bookDetails?.volumeInfo?.industryIdentifiers[0]?.identifier}}</dd>
+        
+        <dt class="col-sm-3">Page count</dt>
+        <dd class="col-sm-9">{{bookDetails?.volumeInfo?.pageCount}}</dd>
+        
+        <dt class="col-sm-3">Category</dt>
+        <dd class="col-sm-9">{{bookDetails?.volumeInfo?.categories[0]}}</dd>
+        
+        <dt class="col-sm-3">Rating</dt>
+        <dd class="col-sm-9">{{bookDetails?.volumeInfo?.averageRating}} (Total Ratings - {{bookDetails?.volumeInfo?.ratingsCount}})</dd>
+        
+        <dt class="col-sm-3">Content version</dt>
+        <dd class="col-sm-9">{{bookDetails?.volumeInfo?.contentVersion}}</dd>
+        
+        <dt class="col-sm-3">Maturity rating</dt>
+        <dd class="col-sm-9">{{bookDetails?.volumeInfo?.maturityRating | removeUnderscore | titlecase}}</dd>
+        
+        <dt class="col-sm-3">Preview link</dt>
+        <dd class="col-sm-9"><a [href]="bookDetails?.volumeInfo?.previewLink" target="_blank">Click here</a></dd>
+        
+        <dt class="col-sm-3">Info link</dt>
+        <dd class="col-sm-9"><a [href]="bookDetails?.volumeInfo?.infoLink" target="_blank">Click here</a></dd>
+        
+        <dt class="col-sm-3">Ebook</dt>
+        <dd class="col-sm-9">{{bookDetails?.saleInfo?.isEbook}}</dd>
+        
+        <dt class="col-sm-3">Sample</dt>
+        <dd class="col-sm-9"><a [href]="bookDetails?.accessInfo?.webReaderLink" target="_blank">Click here</a></dd>
+        
+        <dt class="col-sm-3">Dimension(height)</dt>
+        <dd class="col-sm-9">{{bookDetails?.volumeInfo?.dimensions?.height}}</dd>
+        
+      </dl>
+    </div>
+    <div class="col-3">
+      <div class="jumbotron text-center" *ngIf="bookDetails?.saleInfo.saleability=='FOR_SALE'">
+        <h1 class="display-4">Retail Price: {{bookDetails?.saleInfo?.retailPrice?.amount | currency: 'INR':'symbol'}}</h1>
+        <p class="lead">List Price: {{bookDetails?.saleInfo?.listPrice?.amount | currency: 'INR':'symbol'}}</p>
+        <p>You save: {{bookDetails?.saleInfo?.listPrice?.amount - bookDetails?.saleInfo?.retailPrice?.amount | currency: 'INR':'symbol'}} 
+          ({{100 - bookDetails?.saleInfo?.retailPrice?.amount / bookDetails?.saleInfo?.listPrice?.amount *100 | number:'2.0-1'}}%) 
+        </p>
+        <hr class="my-4">
+        <a class="btn btn-outline-primary" [href]="bookDetails?.saleInfo?.buyLink" target="_blank" role="button">BUY NOW</a>        
+      </div>
+      <div class="jumbotron text-center" *ngIf="bookDetails?.saleInfo?.saleability=='NOT_FOR_SALE'">
+          <h1 class="display-4">Sorry, this book is not available for sale.</h1>
+
+      </div>
+    </div>
+  </div>
+</div>

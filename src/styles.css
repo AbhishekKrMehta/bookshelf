@@ -1,0 +1,13 @@
+@import "~@angular/material/prebuilt-themes/indigo-pink.css";
+
+body{
+    background: url('./assets/svg_background_2.svg');
+    background-size: cover;
+
+}
+
+.mat-dialog-container{
+    background: url('./assets/svg_background_2.svg');
+    background-size: cover;
+    text-align: center;
+}

@@ -1,0 +1,96 @@
+nav{
+  z-index: 20;
+  display: block;
+}
+
+.example-card {
+  width: 30.33%;
+  display: inline-block;
+  background: url('../../assets/svg_background_1.svg');
+  background-size: cover;
+  margin: 1.5%;
+}
+
+mat-card-header button{
+  position: absolute; 
+  top: 20px; 
+  right: 19px;
+  background-color: #f4433600;
+  
+}
+
+mat-card-header button:hover{
+  background-color: #f44336;
+  
+}
+
+mat-card-title{
+  font-weight: 500;
+  font-size: 0.96rem !important ;
+  width: 258px;
+}
+
+mat-card-subtitle{
+  width: 260px;
+
+}
+
+.contain-er {
+  position: relative;
+  text-align: center;
+  color: white;
+}
+
+.contain-er mat-icon i{
+  font-size: 38px; 
+  color:rgb(255, 166, 196)
+}
+
+.contain-er mat-icon i:hover{
+  color:rgb(255, 25, 103)
+}
+
+.mat-card-image{
+  margin-top: 0px !important;
+}
+
+mat-icon {
+  cursor: pointer;
+  position: absolute;
+  top: -14px;
+  right: 54px;
+}
+
+.example-card .mat-card-image{
+  height: 220px;
+  width: 150px;
+}
+
+#carouselExampleIndicators{
+  margin-top: 53px;
+}
+
+#carouselExampleIndicators .carousel-inner img{
+  height: 450px;
+}
+
+.alertBanners{
+  margin-top: 37px;
+  text-align: center;
+}
+
+.mainAlertBanners{
+  position: sticky;
+  top: 56px;
+  z-index: 1;
+}
+
+mat-card-actions a {
+  text-decoration: none ;
+  color: rgba(0, 0, 0, 0.87);
+}
+
+mat-card-actions button a.disabled{
+  pointer-events: none;
+  cursor: default;
+}
